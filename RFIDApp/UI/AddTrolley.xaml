@@ -34,7 +34,7 @@
         <TextBox Grid.Row="2" Grid.Column="1" Width="300" MaxLength="50" Style="{StaticResource FormTextbox}" Text="{Binding Trolley.TagId}"></TextBox>
 
         <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource FormLabel}">Maintenance Date</Label>
-        <DatePicker Grid.Row="3" Grid.Column="1" Width="300" Style="{StaticResource FormDatePicker}" Text="{Binding Trolley.MaintenanceDate}"></DatePicker>
+        <DatePicker Grid.Row="3" Grid.Column="1" Width="300" Style="{StaticResource FormDatePicker}" SelectedDate="{Binding Trolley.MaintenanceDate}"></DatePicker>
 
         <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource FormLabel}">Maintenance Status</Label>
         <ComboBox Grid.Row="4" Grid.Column="1" Width="300" Style="{StaticResource FormComboBox}" ItemsSource="{Binding AllStaus}" SelectedItem="{Binding Trolley.Status}" SelectedIndex="0"></ComboBox>

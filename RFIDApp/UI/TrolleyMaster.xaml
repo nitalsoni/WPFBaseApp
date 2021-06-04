@@ -9,7 +9,7 @@
         <GroupBox Header="Trolley Details" Style="{StaticResource GroupBoxStyle}" HorizontalAlignment="Stretch">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -53,10 +53,10 @@
                         </Button.Template>
                     </Button>
                 </StackPanel>
-                
+
                 <Grid Grid.Row="1" Grid.Column="0" Margin="0,10,0,0">
-                    <DataGrid ItemsSource="{Binding Records}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
-                              Style="{StaticResource blackGrid}">
+                    <DataGrid x:Name="dgTrolley" ItemsSource="{Binding Records}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
+                              Style="{StaticResource blackGrid}" SelectedItem="{Binding SelectedRow}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" Width="10*"></DataGridTextColumn>
                             <DataGridTextColumn Header="Trolley Name" Binding="{Binding Path=TrolleyName}" Width="20*"></DataGridTextColumn>
@@ -69,13 +69,21 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" Width="25*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" Width="15*"></DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Inspection" Width="10*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!--<Button Style="{StaticResource inspectButton}" Command="{Binding Path=DataContext.InspectCommand, RelativeSource= {RelativeSource FindAncestor,AncestorType={x:Type DataGrid}}}"></Button>-->
+                                        <Button x:Name="btnInspect" Style="{StaticResource inspectButton}" Click="btnInspect_Click"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
-                
+
             </Grid>
-            
+
         </GroupBox>
     </Grid>
 </UserControl>

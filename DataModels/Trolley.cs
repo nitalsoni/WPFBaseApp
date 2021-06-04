@@ -35,6 +35,7 @@ namespace DataModel
 
         public DateTime MaintenanceDate { get; set; }
 
+        
         public string Status { get; set; }
 
         public override string ToString()

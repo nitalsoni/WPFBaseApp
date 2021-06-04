@@ -69,6 +69,8 @@ namespace RFIDApp.ViewModel
             }
         }
 
+        public Trolley SelectedRow { get; set; }
+
         #endregion
 
         #region Commands
@@ -144,6 +146,29 @@ namespace RFIDApp.ViewModel
                       catch (Exception ex)
                       {
                           logger.Error($"Failed Export data to excel. {ex.Message}", ex);
+                      }
+                  }));
+            }
+        }
+
+        private RelayCommand _inspectCommand;
+
+        public RelayCommand InspectCommand 
+        {
+            get
+            {
+                return _inspectCommand
+                  ?? (_inspectCommand = new RelayCommand(() =>
+                  {
+                      try
+                      {
+                          logger.Debug($"starting Inpection for {this.SelectedRow.TrolleyName}");
+                          //this.SelectedRow
+                          
+                      }
+                      catch (Exception ex)
+                      {
+                          logger.Error($"Failed to complete insepction. {ex.Message}", ex);
                       }
                   }));
             }

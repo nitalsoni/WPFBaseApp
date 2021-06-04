@@ -1,4 +1,5 @@
 ﻿using DatabaseService.Services;
+using DataModel;
 using RFIDApp.Helpers;
 using RFIDApp.ViewModel;
 using System.Linq;
@@ -22,6 +23,17 @@ namespace RFIDApp.UI
             AddTrolley addWin = new AddTrolley();
             addWin.DataContext = (this.DataContext as TrolleyVM).AddTrolleyVM;
             addWin.ShowDialog();
+        }
+
+        private void btnInspect_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.dgTrolley.SelectedItem != null)
+            {
+                var trolley = this.dgTrolley.SelectedItem as Trolley;
+                AddInspection inspect = new AddInspection();
+                inspect.DataContext = new AddInspectionVM(trolley);
+                inspect.ShowDialog();
+            }
         }
     }
 }

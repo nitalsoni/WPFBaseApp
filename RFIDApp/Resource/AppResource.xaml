@@ -72,7 +72,7 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Row="0" Grid.Column="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16"
+                                <TextBlock Grid.Row="0" Grid.Column="0" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Margin="5,0,0,0"
                                            Text="{TemplateBinding Title}"></TextBlock>
                                 <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Background="{StaticResource LightBlack}" VerticalAlignment="Top">
                                     <Button x:Name="minimizeButton" Style="{StaticResource MinimizeButtonStyle}" WindowChrome.IsHitTestVisibleInChrome="True" 
@@ -116,12 +116,13 @@
         <Setter Property="FontStyle" Value="Italic"></Setter>
         <Setter Property="HorizontalAlignment" Value="Center"></Setter>
         <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="BorderThickness" Value="0.5"></Setter>
         <Setter Property="Margin" Value="5"></Setter>
         <Setter Property="HeaderTemplate">
             <Setter.Value>
                 <DataTemplate>
                     <TextBlock Text="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                               Foreground="LightYellow" FontWeight="Bold" Width="auto" Margin="5" FontSize="30"/>
+                               Foreground="LightYellow" FontWeight="DemiBold" Width="auto" Margin="5" FontSize="25"/>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
@@ -201,6 +202,24 @@
         <Setter Property="Background" Value="{StaticResource MidBlack}"></Setter>
     </Style>
 
+    <Style x:Key="inspectButton" TargetType="{x:Type Button}" BasedOn="{StaticResource buttonHover}">
+        <Setter Property="Margin" Value="3"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="Margin" Value="2"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <!--<Setter Property="Height" Value="40"></Setter>-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Grid>
+                        <Image Source="images/icons8-hammer-and-wrench-48.png"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--form controls-->
     <Style x:Key="FormLabel" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="White"></Setter>
         <Setter Property="FontSize" Value="15"></Setter>

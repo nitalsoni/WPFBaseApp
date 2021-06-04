@@ -7,6 +7,9 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Resource\images\icons8-hammer-and-wrench-48.png" />
+  </ItemGroup>
+  <ItemGroup>
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>9</VersionMinor>
@@ -20,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Fonts\Roboto-Light.ttf" />
+    <Resource Include="Resource\images\icons8-hammer-and-wrench-48.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="UI\Assets\closeBtn_default.png" />
@@ -49,9 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="UI\Assets\icons8-report-card-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="UI\Assets\img_background.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="appsettings.json" />
