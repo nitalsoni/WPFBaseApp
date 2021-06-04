@@ -1,0 +1,48 @@
+﻿<Window x:Class="RFIDApp.UI.AddTrolley"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Title="Add New Trolley" SizeToContent="WidthAndHeight"
+        Style="{StaticResource blackWindow}" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="34" />
+    </WindowChrome.WindowChrome>
+    
+    <Grid Background="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor,AncestorLevel=1}, Path=Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35*"></ColumnDefinition>
+            <ColumnDefinition Width="65*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource FormLabel}">Trolley Name</Label>
+        <TextBox Grid.Row="0" Grid.Column="1" Width="300" MaxLength="50" Style="{StaticResource FormTextbox}" Text="{Binding Trolley.TrolleyName}"></TextBox>
+        
+        <Label Grid.Row="1" Grid.Column="0" Style="{StaticResource FormLabel}">Trolley Number</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Width="300" MaxLength="10" Style="{StaticResource FormTextbox}" Text="{Binding Trolley.TrolleyNum}"></TextBox>
+
+        <Label Grid.Row="2" Grid.Column="0" Style="{StaticResource FormLabel}">Scan Trolley ID</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Width="300" MaxLength="50" Style="{StaticResource FormTextbox}" Text="{Binding Trolley.TagId}"></TextBox>
+
+        <Label Grid.Row="3" Grid.Column="0" Style="{StaticResource FormLabel}">Maintenance Date</Label>
+        <DatePicker Grid.Row="3" Grid.Column="1" Width="300" Style="{StaticResource FormDatePicker}" Text="{Binding Trolley.MaintenanceDate}"></DatePicker>
+
+        <Label Grid.Row="4" Grid.Column="0" Style="{StaticResource FormLabel}">Maintenance Status</Label>
+        <ComboBox Grid.Row="4" Grid.Column="1" Width="300" Style="{StaticResource FormComboBox}" ItemsSource="{Binding AllStaus}" SelectedItem="{Binding Trolley.Status}" SelectedIndex="0"></ComboBox>
+
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Style="{StaticResource FormSubmitButton}" Command="{Binding AddCommand}">Submit</Button>
+            <Button Style="{StaticResource FormCancelButton}" IsCancel="True">Cancel</Button>
+        </StackPanel>
+        
+    </Grid>
+</Window>

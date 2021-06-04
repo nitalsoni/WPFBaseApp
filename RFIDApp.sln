@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RFIDApp", "RFIDApp\RFIDApp.csproj", "{FBAD9AE8-CA87-4926-9A92-8403153CB85E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModels", "DataModels\DataModels.csproj", "{3951259D-C616-4325-85BC-95259A243385}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogService", "LogService\LogService.csproj", "{8A419DB0-A6EE-4796-A8DC-E1B8D11BE5FA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseServices", "DatabaseServices\DatabaseServices.csproj", "{66E20E0F-6F5B-441D-AF5D-1193045C4B93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBAD9AE8-CA87-4926-9A92-8403153CB85E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBAD9AE8-CA87-4926-9A92-8403153CB85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBAD9AE8-CA87-4926-9A92-8403153CB85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBAD9AE8-CA87-4926-9A92-8403153CB85E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3951259D-C616-4325-85BC-95259A243385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3951259D-C616-4325-85BC-95259A243385}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3951259D-C616-4325-85BC-95259A243385}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3951259D-C616-4325-85BC-95259A243385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A419DB0-A6EE-4796-A8DC-E1B8D11BE5FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A419DB0-A6EE-4796-A8DC-E1B8D11BE5FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A419DB0-A6EE-4796-A8DC-E1B8D11BE5FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A419DB0-A6EE-4796-A8DC-E1B8D11BE5FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66E20E0F-6F5B-441D-AF5D-1193045C4B93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66E20E0F-6F5B-441D-AF5D-1193045C4B93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66E20E0F-6F5B-441D-AF5D-1193045C4B93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66E20E0F-6F5B-441D-AF5D-1193045C4B93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5ED4F4FB-0E83-4661-B455-E2D863410CD2}
+	EndGlobalSection
+EndGlobal

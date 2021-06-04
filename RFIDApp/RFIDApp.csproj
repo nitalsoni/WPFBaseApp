@@ -1,0 +1,89 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+  </PropertyGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>9</VersionMinor>
+      <VersionMajor>1</VersionMajor>
+      <Guid>00020813-0000-0000-c000-000000000046</Guid>
+      <Lcid>0</Lcid>
+      <Isolated>false</Isolated>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+      <Private>true</Private>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\Roboto-Light.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Assets\closeBtn_default.png" />
+    <Resource Include="UI\Assets\closeBtn_MouseOver.png" />
+    <Resource Include="UI\Assets\img_background.png" />
+    <Resource Include="UI\Assets\img_contact.png" />
+    <Resource Include="UI\Assets\img_home.png" />
+    <Resource Include="UI\Assets\img_map.png" />
+    <Resource Include="UI\Assets\img_message.png" />
+    <Resource Include="UI\Assets\img_setting.png" />
+    <Resource Include="UI\Assets\img_signout.png" />
+    <Resource Include="UI\Assets\tgBtn_default.png" />
+    <Resource Include="UI\Assets\tgBtn_MouseOver.png" />
+    <Resource Include="Fonts\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Assets\icons8-trolley-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Assets\icons8-add-shopping-cart-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Assets\icons8-questionnaire-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Assets\icons8-spreadsheet-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Assets\icons8-report-card-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="UI\Assets\img_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="appsettings.json" />
+    <Resource Include="Resource\images\icons8-plus-64.png" />
+    <Resource Include="Resource\images\icons8-xls-export-40.png" />
+    <Resource Include="Resource\images\icons8-clear-symbol-64.png" />
+    <Resource Include="Resource\images\icons8-search-64.png" />
+    <Content Include="UI\Assets\icons8-google-web-search-64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\images\icons8-google-web-search-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.31" />
+    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DatabaseServices\DatabaseServices.csproj" />
+    <ProjectReference Include="..\DataModels\DataModels.csproj" />
+    <ProjectReference Include="..\LogService\LogService.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Symbol.RFID3.Host">
+      <HintPath>DLLs\Symbol.RFID3.Host.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

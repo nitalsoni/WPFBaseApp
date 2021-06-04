@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="RFIDApp.UI.TrolleyMaster"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RFIDApp.UI"
+             mc:Ignorable="d">
+    <Grid>
+        <GroupBox Header="Trolley Details" Style="{StaticResource GroupBoxStyle}" HorizontalAlignment="Stretch">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Style="{StaticResource SearchLabelStyle}">Search</TextBlock>
+                    <TextBox Grid.Column="1"  Style="{StaticResource SearchBarStyle}" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding SearchCommand}"/>
+                            <KeyBinding Key="Tab" Command="{Binding SearchCommand}"/>
+                        </TextBox.InputBindings>
+                    </TextBox>
+                    <Button Grid.Column="2" Style="{StaticResource searchButtonStyle}" ToolTip="Search" Command="{Binding SearchCommand}" IsDefault="true">Search</Button>
+                    <Button Grid.Column="3" Style="{StaticResource searchClearButtonStyle}" ToolTip="Clear" Command="{Binding ResetCommand}" IsCancel="true">Clear</Button>
+                </Grid>
+
+                <StackPanel Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Orientation="Vertical" VerticalAlignment="Top" Margin="5,30,5,5">
+                    <Button Style="{StaticResource buttonHover}" Margin="0,10,5,0" Click="Button_Click">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="/Resource/images/icons8-plus-64.png"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button ToolTip="Export" Margin="0,10,5,0" Style="{StaticResource buttonHover}" Command="{Binding ExportCommand}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Source="/Resource/images/icons8-xls-export-40.png"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+                
+                <Grid Grid.Row="1" Grid.Column="0" Margin="0,10,0,0">
+                    <DataGrid ItemsSource="{Binding Records}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" 
+                              Style="{StaticResource blackGrid}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" Width="10*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Trolley Name" Binding="{Binding Path=TrolleyName}" Width="20*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Trolley Number" Binding="{Binding Path=TrolleyNum}" Width="10*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Tag ID" Binding="{Binding Path=TagId}" Width="20*"></DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Maintenance Date" Width="15*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=MaintenanceDate, StringFormat=d}"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Path=Status}" Width="25*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                
+            </Grid>
+            
+        </GroupBox>
+    </Grid>
+</UserControl>
