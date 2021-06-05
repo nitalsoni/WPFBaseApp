@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
+using RFIDApp.UI;
 
 namespace RFIDApp.ViewModel
 {
@@ -92,7 +93,7 @@ namespace RFIDApp.ViewModel
                         {
                             logger.Error($"failed to search trolley. {ex.Message}", ex);
                         }
-                        
+
                     }));
             }
         }
@@ -120,7 +121,7 @@ namespace RFIDApp.ViewModel
         }
 
         private RelayCommand _exportCommand;
-        public RelayCommand ExportCommand 
+        public RelayCommand ExportCommand
         {
             get
             {
@@ -130,7 +131,7 @@ namespace RFIDApp.ViewModel
                       try
                       {
                           logger.Debug($"Start exporting to excel. Records to export {this.Records.Count}");
-                          var app = ExcelOps.ExportToExcel(this.Records,"");
+                          var app = ExcelOps.ExportToExcel(this.Records, "");
                           var workBook = app.ActiveWorkbook;
 
                           var saveFileDailog = new SaveFileDialog();
@@ -152,8 +153,7 @@ namespace RFIDApp.ViewModel
         }
 
         private RelayCommand _inspectCommand;
-
-        public RelayCommand InspectCommand 
+        public RelayCommand InspectCommand
         {
             get
             {
@@ -162,9 +162,42 @@ namespace RFIDApp.ViewModel
                   {
                       try
                       {
-                          logger.Debug($"starting Inpection for {this.SelectedRow.TrolleyName}");
-                          //this.SelectedRow
-                          
+                          if (this.SelectedRow != null)
+                          {
+                              AddInspection inspect = new AddInspection();
+                              inspect.DataContext = new AddInspectionVM(this.SelectedRow);
+                              if (inspect.ShowDialog() == true)
+                              {
+                                  this.ResetCommand.Execute(null);
+                                  logger.Info($"Inpection completed successfully for {this.SelectedRow.TrolleyName}");
+                              }
+                          }
+                      }
+                      catch (Exception ex)
+                      {
+                          logger.Error($"Failed to complete insepction. {ex.Message}", ex);
+                      }
+                  }));
+            }
+        }
+
+        private RelayCommand _addTrolleyCommand;
+        public RelayCommand AddTrolleyCommand
+        {
+            get
+            {
+                return _addTrolleyCommand
+                  ?? (_addTrolleyCommand = new RelayCommand(() =>
+                  {
+                      try
+                      {
+                          AddTrolley addWin = new AddTrolley();
+                          addWin.DataContext = this.AddTrolleyVM;
+                          if (addWin.ShowDialog() == true)
+                          {
+                              this.AddTrolleyVM = new AddTrolleyVM();
+                              this.ResetCommand.Execute(null);
+                          }
                       }
                       catch (Exception ex)
                       {

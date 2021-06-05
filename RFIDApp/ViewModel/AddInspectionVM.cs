@@ -2,6 +2,7 @@
 using DataModel;
 using GalaSoft.MvvmLight.Command;
 using LoggerService;
+using RFIDApp.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,54 +15,43 @@ namespace RFIDApp.ViewModel
     {
         #region Local Vars
         TrolleyDBProvider trolleyProvider = new TrolleyDBProvider();
+        InspectionDBProvider inspectionProvider = new InspectionDBProvider();
         ILoggerManager logger = new LoggerManager();
         #endregion
 
         public AddInspectionVM(Trolley trolley)
         {
-            this.TrolleyName = trolley.TrolleyName;
-            this.TrolleyNum = trolley.TrolleyNum;
-            this.PMDate = trolley.MaintenanceDate;
-            this.MaintenanceStatus = trolley.Status;
-            this.DueDate = trolley.MaintenanceDate;
+            this._inspection = new Inspection();
+            this._inspection.TrolleyId = trolley.Id;
+            this._inspection.TrolleyName = trolley.TrolleyName;
+            this._inspection.TrolleyNum = trolley.TrolleyNum;
+            this._inspection.PMDate = trolley.MaintenanceDate;
+            this._inspection.MaintenanceStatus = trolley.Status;
+            this._inspection.DueDate = trolley.MaintenanceDate;
 
             if (trolley.MaintenanceDate != DateTime.MinValue || trolley.MaintenanceDate != DateTime.MaxValue)
             {
                 if ((trolley.MaintenanceDate - DateTime.Now).TotalDays <= 0)
-                    this.DueDate = DateTime.Now;
+                    this._inspection.DueDate = DateTime.Now;
             }
         }
 
         #region Properties
-        public string TrolleyName { get; set; }
 
-        public string TrolleyNum { get; set; }
+        private Inspection _inspection;
+        public Inspection Inspection
+        {
+            get
+            {
+                return _inspection;
+            }
+            set
+            {
+                _inspection = value;
+                NotifyPropertyChanged("Inspection");
+            }
+        }
 
-        public DateTime DueDate { get; set; }
-
-        public DateTime PMDate { get; set; }
-
-        public string OilGreesing { get; set; }
-
-        public string SlotCondition { get; set; }
-
-        public string WheelCondition { get; set; }
-
-        public string DoorLocking { get; set; }
-
-        public string WeildingHinges { get; set; }
-
-        public string CoverCompartment { get; set; }
-
-        public string ForkGuide { get; set; }
-
-        public string PaintCorrosionLess { get; set; }
-
-        public string Cleaningness { get; set; }
-
-        public string OtherWork { get; set; }
-
-        public string MaintenanceStatus { get; set; }
 
         private List<string> _allStatus;
         public List<string> AllStaus
@@ -79,30 +69,38 @@ namespace RFIDApp.ViewModel
         #endregion
 
         #region Commands
-        private RelayCommand _addInspectionCommand;
-        public RelayCommand AddInspectionCommand
+        private RelayCommand<IClosable> _addInspectionCommand;
+        public RelayCommand<IClosable> AddInspectionCommand
         {
             get
             {
                 return _addInspectionCommand
-                  ?? (_addInspectionCommand = new RelayCommand(() =>
+                  ?? (_addInspectionCommand = new RelayCommand<IClosable>((IClosable window) =>
                   {
                       try
                       {
-                          //dbProvider.AddTrolley(this.Trolley);
-                          //logger.Debug($"New trolley added succesfully. {this.Trolley.ToString()}");
+                          if (inspectionProvider.AddInspection(this.Inspection))
+                          {
+                              trolleyProvider.UpdateTrolley(new Trolley()
+                              {
+                                  Id = this.Inspection.TrolleyId,
+                                  Status = this.Inspection.MaintenanceStatus,
+                                  MaintenanceDate = this.Inspection.DueDate
+                              });
+
+                              logger.Info($"New Inspection added succesfully. {this.Inspection.ToString()}");
+                          }
+                          
+                          window.Close();
                       }
                       catch (Exception ex)
                       {
-                          logger.Error($"failed to add trolley insepction. {ex.Message}", ex);
+                          logger.Error($"failed to add new inspection. {ex.Message}", ex);
                       }
-                  }, () =>
-                  {
-                      return true;
                   }));
             }
         }
         #endregion
-        
+
     }
 }

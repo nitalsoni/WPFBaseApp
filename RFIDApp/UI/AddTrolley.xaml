@@ -1,4 +1,5 @@
 ﻿<Window x:Class="RFIDApp.UI.AddTrolley"
+        x:Name="AddTrolleyWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -40,7 +41,7 @@
         <ComboBox Grid.Row="4" Grid.Column="1" Width="300" Style="{StaticResource FormComboBox}" ItemsSource="{Binding AllStaus}" SelectedItem="{Binding Trolley.Status}" SelectedIndex="0"></ComboBox>
 
         <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Style="{StaticResource FormSubmitButton}" Command="{Binding AddCommand}">Submit</Button>
+            <Button Style="{StaticResource FormSubmitButton}" IsDefault="True" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=AddTrolleyWindow}">Submit</Button>
             <Button Style="{StaticResource FormCancelButton}" IsCancel="True">Cancel</Button>
         </StackPanel>
         

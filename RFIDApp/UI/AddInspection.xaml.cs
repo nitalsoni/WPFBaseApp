@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RFIDApp.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,17 @@ namespace RFIDApp.UI
     /// <summary>
     /// Interaction logic for Inspection.xaml
     /// </summary>
-    public partial class AddInspection : Window
+    public partial class AddInspection : Window, IClosable
     {
         public AddInspection()
         {
             InitializeComponent();
+        }
+
+        public new void Close()
+        {
+            this.DialogResult = true;
+            base.Close();
         }
     }
 }

@@ -2,6 +2,7 @@
 using DataModel;
 using GalaSoft.MvvmLight.Command;
 using LoggerService;
+using RFIDApp.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,27 +52,27 @@ namespace RFIDApp.ViewModel
         }
 
         #region Commands
-        private RelayCommand _addCommand;
-        public RelayCommand AddCommand
+        private RelayCommand<IClosable> _addCommand;
+        public RelayCommand<IClosable> AddCommand
         {
             get
             {
                 return _addCommand
-                  ?? (_addCommand = new RelayCommand(() =>
+                  ?? (_addCommand = new RelayCommand<IClosable>((IClosable window) =>
                   {
                       try
                       {
-                          dbProvider.AddTrolley(this.Trolley);
-                          logger.Debug($"New trolley added succesfully. {this.Trolley.ToString()}");
+                          if (dbProvider.AddTrolley(this.Trolley))
+                          {
+                              logger.Debug($"New trolley added succesfully. {this.Trolley.ToString()}");
+                          }
+
+                          window.Close();
                       }
                       catch (Exception ex)
                       {
                           logger.Error($"failed to add new trolley. {ex.Message}", ex);
                       }
-                }, ()=> 
-                {
-                    return true;
-                    //return this._trolley?.TrolleyName?.Length > 0 && this._trolley?.MaintenanceDate != DateTime.MinValue && this._trolley?.Status?.Length > 0 && this._trolley?.TrolleyNum?.Length > 0;
                 }));
             }
         }

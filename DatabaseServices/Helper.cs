@@ -20,5 +20,13 @@ namespace DatabaseService
             return data.ToString();
         }
 
+        public static string DefaultUser
+        {
+            get
+            {
+                return "System";
+            }
+        }
+
     }
 }

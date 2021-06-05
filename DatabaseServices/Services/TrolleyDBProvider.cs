@@ -80,7 +80,7 @@ namespace DatabaseService.Services
         {
             if (ConfigReader.TryGetQuery("u_trolley", out string uQuery))
             {
-                uQuery = string.Format(uQuery, trolley.Status, trolley.MaintenanceDate, trolley.TagId);
+                uQuery = string.Format(uQuery, trolley.Status, trolley.MaintenanceDate, trolley.Id);
                 return this.ExecuteNonQuery(uQuery) > 0;
             }
 

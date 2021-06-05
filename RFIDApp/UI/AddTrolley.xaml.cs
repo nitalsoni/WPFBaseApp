@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RFIDApp.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,17 @@ namespace RFIDApp.UI
     /// <summary>
     /// Interaction logic for AddTrolley.xaml
     /// </summary>
-    public partial class AddTrolley : Window
+    public partial class AddTrolley : Window, IClosable
     {
         public AddTrolley()
         {
             InitializeComponent();
+        }
+
+        public new void Close()
+        {
+            this.DialogResult = true;
+            base.Close();
         }
     }
 }
